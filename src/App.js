@@ -6,47 +6,48 @@ import Products from "./components/Products";
 import store from "./store";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      cartItems: localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : [],
-    };
-  }
+  // !dont need constructor everything comes from redux store
+  // constructor() {
+  //   super();
+  //   this.state = {
+    //     cartItems: localStorage.getItem("cartItems")
+    //       ? JSON.parse(localStorage.getItem("cartItems"))
+    //       : [],
+    //   };
+    // }
+    
+    // !Deprecated methods -------------------------------------------------------
+  // addToCart = (product) => {
+  //   const cartItems = this.state.cartItems.slice();
+  //   let alreadyInCart = false;
+  //   cartItems.forEach((item) => {
+  //     if (item._id === product._id) {
+  //       item.count++; //Increse the number of products in the cart
+  //       alreadyInCart = true;
+  //     }
+  //   });
+  //   if (!alreadyInCart) {
+  //     cartItems.push({ ...product, count: 1 });
+  //   }
+  //   this.setState({ cartItems });
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // };
 
-  addToCart = (product) => {
-    const cartItems = this.state.cartItems.slice();
-    let alreadyInCart = false;
-    cartItems.forEach((item) => {
-      if (item._id === product._id) {
-        item.count++; //Increse the number of products in the cart
-        alreadyInCart = true;
-      }
-    });
-    if (!alreadyInCart) {
-      cartItems.push({ ...product, count: 1 });
-    }
-    this.setState({ cartItems });
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  };
+  // removeFromCart = (product) => {
+  //   const cartItems = this.state.cartItems.slice();
+  //   this.setState({
+  //     cartItems: cartItems.filter((x) => x._id !== product._id),
+  //   });
+  //   console.log(this.state.cartItems);
+  //   localStorage.setItem(
+  //     "cartItems",
+  //     JSON.stringify(cartItems.filter((x) => x._id !== product._id))
+  //   );
+  // };
 
-  removeFromCart = (product) => {
-    const cartItems = this.state.cartItems.slice();
-    this.setState({
-      cartItems: cartItems.filter((x) => x._id !== product._id),
-    });
-    console.log(this.state.cartItems);
-    localStorage.setItem(
-      "cartItems",
-      JSON.stringify(cartItems.filter((x) => x._id !== product._id))
-    );
-  };
-
-  createOrder = (order) => {
-    alert("Neeed to save order for " + order.name);
-  };
-  // !Deprecated methods -------------------------------------------------------
+  // createOrder = (order) => {
+  //   alert("Neeed to save order for " + order.name);
+  // };
   // sortProducts = (event) => {
   //   const sort = event.target.value;
   //   this.setState((state) => ({
@@ -94,14 +95,10 @@ class App extends React.Component {
             <div className="content">
               <div className="main">
                 <Filter />
-                <Products addToCart={this.addToCart} />
+                <Products />
               </div>
               <div className="sidebar">
-                <Cart
-                  cartItems={this.state.cartItems}
-                  removeFromCart={this.removeFromCart}
-                  createOrder={this.createOrder}
-                />
+                <Cart />
               </div>
             </div>
           </main>
