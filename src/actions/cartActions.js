@@ -29,3 +29,5 @@ export const removeFromCart = (product) => (dispatch, getState) => {
   });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
+
+export const clearCart = () => {};
